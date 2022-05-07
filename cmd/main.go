@@ -19,23 +19,24 @@ func main () {
 	defer rpio.Close()
 
 	for p := 0; p < 20; p++ {
-		fmt.Println ("pin ", p)
+		fmt.Println ("pin ", p, "high")
 		pin := rpio.Pin(p)
 
 		pin.Output()
 
-		for x := 0; x < 5; x++ {
-			fmt.Println ("making high")
-			pin.High() // make it high
-			time.Sleep(time.Second * 4)
-			fmt.Println ("making low")
-			pin.Low()
-			time.Sleep(time.Second * 2)
-		}
+		pin.High() // make it high
+		time.Sleep(time.Second * 4)
+	}
 
-		fmt.Println ("done with pin")
+	for p := 0; p < 20; p++ {
+		fmt.Println ("pin ", p, "low")
+		pin := rpio.Pin(p)
+
+		pin.Low()
+		time.Sleep(time.Second * 4)
 		pin.PullOff()
 	}
-	
+
+		
 	fmt.Println ("exiting")
 }
