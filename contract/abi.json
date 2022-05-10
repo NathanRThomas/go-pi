@@ -1,0 +1,27 @@
+[
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "opener",
+				"type": "address"
+			}
+		],
+		"name": "Open",
+		"type": "event"
+	},
+	{
+		"inputs": [],
+		"name": "secretDoor",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	}
+]
