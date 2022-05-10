@@ -24,6 +24,8 @@ func openDoor () {
 }
 
 func monitorButton (wg *sync.WaitGroup, running *bool) {
+	defer wg.Done()
+	
 	pin := rpio.Pin(24)
 	pin.Input()
 	pin.PullUp()
