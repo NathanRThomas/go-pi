@@ -15,7 +15,7 @@ func openDoor () {
 	pin := rpio.Pin(18)
 	pin.Output()
 	pin.High() // make it high
-	time.Sleep(time.Second * 30)
+	time.Sleep(time.Second * 10)
 
 	pin.Low()
 	pin.PullOff()
@@ -29,9 +29,13 @@ func monitorButton (wg *sync.WaitGroup, running *bool) {
 	pin.PullUp()
 	pin.Detect(rpio.FallEdge) // look for it falling to ground
 
+	triggered := false 
 	for *running {
-		if pin.EdgeDetected() {
+		if triggered == false && pin.EdgeDetected() {
 			openDoor() // open saysme
+			triggered = true // i think we're getting re-entry stuff...
+		} else {
+			triggered = false 
 		}
 		time.Sleep(time.Second / 2)
 	}
